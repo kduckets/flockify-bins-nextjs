@@ -11,5 +11,10 @@
     "next": "9.5.5",
     "react": "16.14.0",
     "react-dom": "16.14.0"
+  },
+  "devDependencies": {
+    "firebase": "^7.24.0",
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^7.0.16"
   }
 }

@@ -1,65 +1,108 @@
-import Head from 'next/head'
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import styles from '../styles/Home.module.css'
+import fire from '../config/fire-config';
+import { animated, useSpring } from "react-spring";
+import { useScroll } from "react-use-gesture";
 
-export default function Home() {
+const Home = () => {
+  const [posts, setPosts] = useState([]);  useEffect(() => {
+    fire.database()
+      .ref('posts/firsttoflock/')
+      .limitToLast(100)
+      .orderByChild('score')
+      .once('value')
+      .then(snap => {
+        const posts = snap.val()
+        setPosts(posts)
+      });
+  }, []);  
+
+  const [style, set] = useSpring(() => ({
+    transform: "perspective(500px) rotateY(0deg)"
+  }));
+
+  const bind = useScroll(event => {
+    set({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? event.delta[0] : 0
+      }deg)`
+    });
+  });
+  
+  
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Flockify Bins</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <img src='/flockify.png' className={styles.center}/>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+{/* BIN 1       */}
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+      <div className={styles.container} {...bind()}>
+        {Object.entries(posts).map(post => 
+              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
+                 target = "_blank"
+                 key={post[0]} 
+                 className = {styles.album_title}
+                 >
+               <animated.div style={style}>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>     
+            
+        )}
+     
+      </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+{/* BIN 2 */}
+      <div className={styles.container} >
+        {Object.entries(posts).map(post => 
+              <a href =""
+                 target = "_blank"
+                 key={post[0]} 
+                 className = {styles.album_title}
+                 >
+               <animated.div>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>     
+        )}
+      </div>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      {/* BIN 3 */}
+      <div className={styles.container} >
+        {Object.entries(posts).map(post => 
+              <a href =""
+                 target = "_blank"
+                 key={post[0]} 
+                 className = {styles.album_title}
+                 >
+               <animated.div>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>     
+        )}
+      </div>
+   
     </div>
   )
 }
+
+export default Home;
+
+
+
