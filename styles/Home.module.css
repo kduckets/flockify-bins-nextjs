@@ -10,13 +10,13 @@
   margin-left: auto;
   margin-right: auto;
   padding-bottom:.5rem;
-  height: 6rem;
+  height: 4rem;
 }
 
 .post {
   flex-shrink: 0;
-  width: 220px;
-  height: 220px;
+  /* width: 220px; */
+  height: 100%;
   border-radius: 10px;
   margin-left: 10px;
   background-size: cover;

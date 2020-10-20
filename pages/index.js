@@ -47,7 +47,7 @@ const Home = () => {
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
-                 className = {styles.album_title}
+                //  className = {styles.album_title}
                  >
                <animated.div style={style}>
                 <img 
