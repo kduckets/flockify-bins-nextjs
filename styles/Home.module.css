@@ -13,6 +13,11 @@
   height: 4rem;
 }
 
+.footer {
+  color:white;
+  text-align: center;
+}
+
 .post {
   flex-shrink: 0;
   /* width: 220px; */

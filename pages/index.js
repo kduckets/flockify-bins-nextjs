@@ -59,6 +59,7 @@ const Home = () => {
      
       </div>
       <img src='/flockify.png' className={styles.center}/>
+      <div className={styles.footer}><small >crate_digger beta</small></div>
     </div>
  
   )
