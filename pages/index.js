@@ -10,7 +10,8 @@ const Home = () => {
     fire.database()
       .ref('posts/firsttoflock/')
       .limitToLast(100)
-      .orderByChild('score')
+      .orderByChild('/tags/0/name')
+      .equalTo('Rock')
       .once('value')
       .then(snap => {
         const posts = snap.val()
@@ -41,8 +42,6 @@ const Home = () => {
 
 
 {/* BIN 1       */}
-
-
       <div className={styles.container} {...bind()}>
         {Object.entries(posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
@@ -60,42 +59,6 @@ const Home = () => {
             
         )}
      
-      </div>
-
-{/* BIN 2 */}
-      <div className={styles.container} >
-        {Object.entries(posts).map(post => 
-              <a href =""
-                 target = "_blank"
-                 key={post[0]} 
-                 className = {styles.album_title}
-                 >
-               <animated.div>
-                <img 
-                    src ={post[1] !== undefined? post[1].image_medium : ''} 
-                    className = {styles.post}
-                />
-                </animated.div>
-               </a>     
-        )}
-      </div>
-
-      {/* BIN 3 */}
-      <div className={styles.container} >
-        {Object.entries(posts).map(post => 
-              <a href =""
-                 target = "_blank"
-                 key={post[0]} 
-                 className = {styles.album_title}
-                 >
-               <animated.div>
-                <img 
-                    src ={post[1] !== undefined? post[1].image_medium : ''} 
-                    className = {styles.post}
-                />
-                </animated.div>
-               </a>     
-        )}
       </div>
    
     </div>
