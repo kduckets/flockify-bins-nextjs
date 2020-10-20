@@ -38,8 +38,6 @@ const Home = () => {
         <title>Flockify Bins</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <img src='/flockify.png' className={styles.center}/>
-
 
 {/* BIN 1       */}
       <div className={styles.container} {...bind()}>
@@ -60,8 +58,9 @@ const Home = () => {
         )}
      
       </div>
-   
+      <img src='/flockify.png' className={styles.center}/>
     </div>
+ 
   )
 }
 
