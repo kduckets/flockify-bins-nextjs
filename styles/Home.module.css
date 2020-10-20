@@ -13,9 +13,13 @@
   height: 4rem;
 }
 
-.footer {
+.footerText {
   color:white;
   text-align: center;
+}
+
+.tab{
+  background-color: #594b12 !important;
 }
 
 .post {

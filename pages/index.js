@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import fire from '../config/fire-config';
 import { animated, useSpring } from "react-spring";
 import { useScroll } from "react-use-gesture";
+import { Tabs, Tab } from "react-bootstrap";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);  useEffect(() => {
@@ -16,6 +17,9 @@ const Home = () => {
       .then(snap => {
         const posts = snap.val()
         setPosts(posts)
+        for (const [key, value] of Object.entries(posts)) {
+          console.log(`${key}: ${value}`);
+        }
       });
   }, []);  
 
@@ -39,8 +43,13 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
 {/* BIN 1       */}
+
+<Tabs defaultActiveKey="rock" id="noanim-tab-example" >
+  <Tab eventKey="rock" title="Rock" >
       <div className={styles.container} {...bind()}>
+     
         {Object.entries(posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
@@ -53,13 +62,41 @@ const Home = () => {
                     className = {styles.post}
                 />
                 </animated.div>
-               </a>     
-            
-        )}
-     
+               </a>      
+        )}   
       </div>
+      </Tab>
+  </Tabs>
+
+
+  {/* BIN 2     */}
+<Tabs defaultActiveKey="jazz" id="noanim-tab-example" >
+  <Tab eventKey="jazz" title="Jazz" >
+      <div className={styles.container} {...bind()}>
+     
+        {Object.entries(posts).map(post => 
+              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
+                 target = "_blank"
+                 key={post[0]} 
+                //  className = {styles.album_title}
+                 >
+               <animated.div style={style}>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>      
+        )}   
+      </div>
+      </Tab>
+  </Tabs>
+
+
+
+
       <img src='/flockify.png' className={styles.center}/>
-      <div className={styles.footer}><small >crate_digger beta</small></div>
+      <div className={styles.footerText}><small >crate_digger beta</small></div>
     </div>
  
   )
