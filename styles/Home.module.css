@@ -14,8 +14,8 @@
 
 .post {
   flex-shrink: 0;
-  width: 420px;
-  height: 420px;
+  width: 220px;
+  height: 220px;
   border-radius: 10px;
   margin-left: 10px;
   background-size: cover;
