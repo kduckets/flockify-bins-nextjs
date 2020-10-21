@@ -11,6 +11,7 @@ const Home = () => {
   const [jazz_posts, setJazzPosts] = useState([]);
   const [funk_posts, setFunkPosts] = useState([]);
   const [reggae_posts, setReggaePosts] = useState([]);
+  const [folk_posts, setFolkPosts] = useState([]);
 
 
   const [posts, setPosts] = useState([]);  useEffect(() => {
@@ -66,6 +67,17 @@ const Home = () => {
           });    
        }}
         setReggaePosts(reggae_posts)
+
+        const folk_posts = {}
+        for (const [key, post] of Object.entries(posts)) {
+        if(post.tags){
+        post.tags.forEach(tag => {
+          if(tag.name.match(/Folk/i) || post.media_info.summary.match(/Folk/i)){
+            folk_posts[key] = post
+            }
+          });    
+       }}
+        setFolkPosts(folk_posts)
 
 
 
@@ -190,6 +202,31 @@ const Home = () => {
       </div>
       </Tab>
   </Tabs>
+
+
+      {/* BIN 5    */}
+<Tabs defaultActiveKey="folk" id="noanim-tab-example" >
+  <Tab eventKey="folk" title="Folk" >
+      <div className={styles.container} {...bind()}>
+     
+        {Object.entries(folk_posts).map(post => 
+              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
+                 target = "_blank"
+                 key={post[0]} 
+                //  className = {styles.album_title}
+                 >
+               <animated.div>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>      
+        )}   
+      </div>
+      </Tab>
+  </Tabs>
+
 
 
 
