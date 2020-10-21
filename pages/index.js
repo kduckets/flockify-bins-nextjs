@@ -14,7 +14,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
-      .limitToLast(200)
+      .limitToLast(400)
       .orderByChild('score')
       .once('value')
       .then(snap => {
@@ -25,7 +25,7 @@ const Home = () => {
         for (const [key, post] of Object.entries(posts)) {
           if(post.tags){
           post.tags.forEach(tag => {
-            if(tag.name.match(/Rock/i)){
+            if(tag.name.match(/Rock/i) || tag.name.match(/indie/i)){
               console.log(post)
               rock_posts[key] = post
             }
@@ -37,7 +37,7 @@ const Home = () => {
         for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
-          if(tag.name.match(/Jazz/i)){
+          if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i)){
             console.log(post)
             jazz_posts[key] = post
             }
