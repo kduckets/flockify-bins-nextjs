@@ -16,7 +16,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
-      .limitToLast(700)
+      .limitToLast(600)
       .orderByChild('media_info/album')
       .once('value')
       .then(snap => {
