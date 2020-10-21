@@ -10,11 +10,12 @@ const Home = () => {
   const [rock_posts, setRockPosts] = useState([]);
   const [jazz_posts, setJazzPosts] = useState([]);
   const [funk_posts, setFunkPosts] = useState([]);
+  const [reggae_posts, setReggaePosts] = useState([]);
+
 
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
-      .limitToLast(400)
       .orderByChild('score')
       .once('value')
       .then(snap => {
@@ -54,6 +55,17 @@ const Home = () => {
           });    
        }}
         setFunkPosts(funk_posts)
+
+        const reggae_posts = {}
+        for (const [key, post] of Object.entries(posts)) {
+        if(post.tags){
+        post.tags.forEach(tag => {
+          if(tag.name.match(/Reggae/i) || post.media_info.summary.match(/Reggae/i)){
+            reggae_posts[key] = post
+            }
+          });    
+       }}
+        setReggaePosts(reggae_posts)
 
 
 
@@ -154,6 +166,31 @@ const Home = () => {
       </div>
       </Tab>
   </Tabs>
+
+
+      {/* BIN 4    */}
+<Tabs defaultActiveKey="reggae" id="noanim-tab-example" >
+  <Tab eventKey="reggae" title="Reggae" >
+      <div className={styles.container} {...bind()}>
+     
+        {Object.entries(reggae_posts).map(post => 
+              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
+                 target = "_blank"
+                 key={post[0]} 
+                //  className = {styles.album_title}
+                 >
+               <animated.div>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>      
+        )}   
+      </div>
+      </Tab>
+  </Tabs>
+
 
 
 
