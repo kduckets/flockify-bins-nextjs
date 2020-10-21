@@ -25,8 +25,7 @@ const Home = () => {
         for (const [key, post] of Object.entries(posts)) {
           if(post.tags){
           post.tags.forEach(tag => {
-            if(tag.name.match(/Rock/i) || tag.name.match(/indie/i)){
-              console.log(post)
+            if(tag.name.match(/Rock/i) || tag.name.match(/indie/i) || post.media_info.summary.match(/Rock/i)){
               rock_posts[key] = post
             }
           });    
@@ -37,8 +36,7 @@ const Home = () => {
         for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
-          if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i)){
-            console.log(post)
+          if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i || post.media_info.summary.match(/Jazz/i))){
             jazz_posts[key] = post
             }
           });    
@@ -50,8 +48,7 @@ const Home = () => {
         for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
-          if(tag.name.match(/Funk/i)){
-            console.log(post)
+          if(tag.name.match(/Funk/i) || post.media_info.summary.match(/Funk/i)){
             funk_posts[key] = post
             }
           });    
