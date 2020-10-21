@@ -7,25 +7,68 @@ import { useScroll } from "react-use-gesture";
 import { Tabs, Tab } from "react-bootstrap";
 
 const Home = () => {
+  const [rock_posts, setRockPosts] = useState([]);
+  const [jazz_posts, setJazzPosts] = useState([]);
+  const [funk_posts, setFunkPosts] = useState([]);
+
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
-      .limitToLast(100)
-      .orderByChild('/tags/0/name')
-      .equalTo('Rock')
+      .limitToLast(200)
+      .orderByChild('score')
       .once('value')
       .then(snap => {
         const posts = snap.val()
-        setPosts(posts)
-        for (const [key, value] of Object.entries(posts)) {
-          console.log(`${key}: ${value}`);
-        }
-      });
+        setPosts(posts) 
+
+        const rock_posts = {}
+        for (const [key, post] of Object.entries(posts)) {
+          if(post.tags){
+          post.tags.forEach(tag => {
+            if(tag.name.match(/Rock/i)){
+              console.log(post)
+              rock_posts[key] = post
+            }
+          });    
+        }}
+        setRockPosts(rock_posts)
+
+        const jazz_posts = {}
+        for (const [key, post] of Object.entries(posts)) {
+        if(post.tags){
+        post.tags.forEach(tag => {
+          if(tag.name.match(/Jazz/i)){
+            console.log(post)
+            jazz_posts[key] = post
+            }
+          });    
+       }}
+        setJazzPosts(jazz_posts)
+
+
+        const funk_posts = {}
+        for (const [key, post] of Object.entries(posts)) {
+        if(post.tags){
+        post.tags.forEach(tag => {
+          if(tag.name.match(/Funk/i)){
+            console.log(post)
+            funk_posts[key] = post
+            }
+          });    
+       }}
+        setFunkPosts(funk_posts)
+
+
+
+
+      } );
   }, []);  
 
   const [style, set] = useSpring(() => ({
     transform: "perspective(500px) rotateY(0deg)"
   }));
+
+        
 
   const bind = useScroll(event => {
     set({
@@ -34,7 +77,6 @@ const Home = () => {
       }deg)`
     });
   });
-  
   
   return (
     <div>
@@ -47,10 +89,10 @@ const Home = () => {
 {/* BIN 1       */}
 
 <Tabs defaultActiveKey="rock" id="noanim-tab-example" >
-  <Tab eventKey="rock" title="Rock" >
+  <Tab eventKey="rock" title="Rock">
       <div className={styles.container} {...bind()}>
      
-        {Object.entries(posts).map(post => 
+        {Object.entries(rock_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
@@ -74,13 +116,37 @@ const Home = () => {
   <Tab eventKey="jazz" title="Jazz" >
       <div className={styles.container} {...bind()}>
      
-        {Object.entries(posts).map(post => 
+        {Object.entries(jazz_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div style={style}>
+               <animated.div>
+                <img 
+                    src ={post[1] !== undefined? post[1].image_medium : ''} 
+                    className = {styles.post}
+                />
+                </animated.div>
+               </a>      
+        )}   
+      </div>
+      </Tab>
+  </Tabs>
+
+
+    {/* BIN 3     */}
+<Tabs defaultActiveKey="funk" id="noanim-tab-example" >
+  <Tab eventKey="funk" title="Funk" >
+      <div className={styles.container} {...bind()}>
+     
+        {Object.entries(funk_posts).map(post => 
+              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
+                 target = "_blank"
+                 key={post[0]} 
+                //  className = {styles.album_title}
+                 >
+               <animated.div>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}

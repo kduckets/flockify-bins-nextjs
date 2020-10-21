@@ -18,10 +18,6 @@
   text-align: center;
 }
 
-.tab{
-  background-color: #594b12 !important;
-}
-
 .post {
   flex-shrink: 0;
   /* width: 220px; */
