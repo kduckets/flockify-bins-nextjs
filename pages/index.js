@@ -16,7 +16,6 @@ const Home = () => {
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
-      .limitToLast(600)
       .orderByChild('media_info/album')
       .once('value')
       .then(snap => {
@@ -108,7 +107,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div style={style}>
+               <animated.div>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
