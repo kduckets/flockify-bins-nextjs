@@ -158,7 +158,7 @@ const Home = () => {
   <Tab eventKey="rock" title="Rock">
       <div className={styles.container} {...bind()}>
      
-        {Object.entries(rock_posts).map(post => 
+        {Object.entries(rock_posts).slice(0,100).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
