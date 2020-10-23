@@ -13,7 +13,6 @@ const Home = () => {
   const [reggae_posts, setReggaePosts] = useState([]);
   const [folk_posts, setFolkPosts] = useState([]);
 
-
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
@@ -32,6 +31,7 @@ const Home = () => {
             }
           });    
         }}
+        
         setRockPosts(rock_posts)
 
         const jazz_posts = {}
@@ -89,10 +89,56 @@ const Home = () => {
     transform: "perspective(500px) rotateY(0deg)"
   }));
 
-        
+  const [style2, set2] = useSpring(() => ({
+    transform: "perspective(500px) rotateY(0deg)"
+  }));
+
+  const [style3, set3] = useSpring(() => ({
+    transform: "perspective(500px) rotateY(0deg)"
+  }));
+
+  const [style4, set4] = useSpring(() => ({
+    transform: "perspective(500px) rotateY(0deg)"
+  }));
+
+  const [style5, set5] = useSpring(() => ({
+    transform: "perspective(500px) rotateY(0deg)"
+  }));
 
   const bind = useScroll(event => {
     set({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? event.delta[0] : 0
+      }deg)`
+    });
+  });
+
+  const bind2 = useScroll(event => {
+    set2({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? event.delta[0] : 0
+      }deg)`
+    });
+  });
+
+  const bind3 = useScroll(event => {
+    set3({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? event.delta[0] : 0
+      }deg)`
+    });
+  });
+
+  const bind4 = useScroll(event => {
+    set4({
+      transform: `perspective(500px) rotateY(${
+        event.scrolling ? event.delta[0] : 0
+      }deg)`
+    });
+  });
+
+  const bind5 = useScroll(event => {
+    set5({
       transform: `perspective(500px) rotateY(${
         event.scrolling ? event.delta[0] : 0
       }deg)`
@@ -108,7 +154,6 @@ const Home = () => {
 
 
 {/* BIN 1       */}
-
 <Tabs defaultActiveKey="rock" id="noanim-tab-example" >
   <Tab eventKey="rock" title="Rock">
       <div className={styles.container} {...bind()}>
@@ -119,7 +164,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div>
+               <animated.div style={style}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
@@ -135,7 +180,7 @@ const Home = () => {
   {/* BIN 2     */}
 <Tabs defaultActiveKey="jazz" id="noanim-tab-example" >
   <Tab eventKey="jazz" title="Jazz" >
-      <div className={styles.container} {...bind()}>
+      <div className={styles.container} {...bind2()}>
      
         {Object.entries(jazz_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
@@ -143,7 +188,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div>
+               <animated.div style={style2}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
@@ -159,7 +204,7 @@ const Home = () => {
     {/* BIN 3     */}
 <Tabs defaultActiveKey="funk" id="noanim-tab-example" >
   <Tab eventKey="funk" title="Funk" >
-      <div className={styles.container} {...bind()}>
+      <div className={styles.container} {...bind3()}>
      
         {Object.entries(funk_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
@@ -167,7 +212,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div>
+               <animated.div style={style3}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
@@ -183,7 +228,7 @@ const Home = () => {
       {/* BIN 4    */}
 <Tabs defaultActiveKey="reggae" id="noanim-tab-example" >
   <Tab eventKey="reggae" title="Reggae" >
-      <div className={styles.container} {...bind()}>
+      <div className={styles.container} {...bind4()}>
      
         {Object.entries(reggae_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
@@ -191,7 +236,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div>
+               <animated.div style={style4}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
@@ -207,7 +252,7 @@ const Home = () => {
       {/* BIN 5    */}
 <Tabs defaultActiveKey="folk" id="noanim-tab-example" >
   <Tab eventKey="folk" title="Folk" >
-      <div className={styles.container} {...bind()}>
+      <div className={styles.container} {...bind5()}>
      
         {Object.entries(folk_posts).map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
@@ -215,7 +260,7 @@ const Home = () => {
                  key={post[0]} 
                 //  className = {styles.album_title}
                  >
-               <animated.div>
+               <animated.div style={style5}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
