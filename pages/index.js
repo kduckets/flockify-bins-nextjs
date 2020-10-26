@@ -5,6 +5,7 @@ import fire from '../config/fire-config';
 import { animated, useSpring } from "react-spring";
 import { useScroll } from "react-use-gesture";
 import { Tabs, Tab } from "react-bootstrap";
+import Link from 'next/link';
 
 const Home = () => {
   const [rock_posts, setRockPosts] = useState([]);
@@ -50,32 +51,92 @@ const Home = () => {
 
     // END GENERIC FUNCTIONS TODO: move out of index.js ----------------------------------
 
+    const [style, set] = useSpring(() => ({
+      transform: "perspective(500px) rotateY(0deg)"
+    }));
+  
+    const [style2, set2] = useSpring(() => ({
+      transform: "perspective(500px) rotateY(0deg)"
+    }));
+  
+    const [style3, set3] = useSpring(() => ({
+      transform: "perspective(500px) rotateY(0deg)"
+    }));
+  
+    const [style4, set4] = useSpring(() => ({
+      transform: "perspective(500px) rotateY(0deg)"
+    }));
+  
+    const [style5, set5] = useSpring(() => ({
+      transform: "perspective(500px) rotateY(0deg)"
+    }));
+  
+    const bind = useScroll(event => {
+      set({
+        transform: `perspective(500px) rotateY(${
+          event.scrolling ? event.delta[0] : 0
+        }deg)`
+      });
+    });
+  
+    const bind2 = useScroll(event => {
+      set2({
+        transform: `perspective(500px) rotateY(${
+          event.scrolling ? event.delta[0] : 0
+        }deg)`
+      });
+    });
+  
+    const bind3 = useScroll(event => {
+      set3({
+        transform: `perspective(500px) rotateY(${
+          event.scrolling ? event.delta[0] : 0
+        }deg)`
+      });
+    });
+  
+    const bind4 = useScroll(event => {
+      set4({
+        transform: `perspective(500px) rotateY(${
+          event.scrolling ? event.delta[0] : 0
+        }deg)`
+      });
+    });
+  
+    const bind5 = useScroll(event => {
+      set5({
+        transform: `perspective(500px) rotateY(${
+          event.scrolling ? event.delta[0] : 0
+        }deg)`
+      });
+    });
+
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
       .orderByChild('media_info/album')
       .once('value')
       .then(snap => {
-        const all_posts = snap.val()
-        let posts = Object.keys(all_posts).map((k) => all_posts[k])
+        const posts = snap.val()
         setPosts(posts) 
 
+
+      //TODO: need to foreach these
+      
         const rock_posts = {}
-        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
+        for (const [key, post] of Object.entries(posts)) {
           if(post.tags){
           post.tags.forEach(tag => {
             if(tag.name.match(/Rock/i) || tag.name.match(/indie/i) || post.media_info.summary.match(/Rock/i)){
               rock_posts[key] = post
             }
-          });    
+          }); 
         }}
-
-        //TODO: need to foreach these
-        
-        setRockPosts(rock_posts)
+        const shuffled_rock_posts = knuthShuffle(Object.entries(rock_posts))
+        setRockPosts(shuffled_rock_posts)
 
         const jazz_posts = {}
-        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
+        for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i || post.media_info.summary.match(/Jazz/i))){
@@ -83,11 +144,12 @@ const Home = () => {
             }
           });    
        }}
-        setJazzPosts(jazz_posts)
+        const shuffled_jazz_posts = knuthShuffle(Object.entries(jazz_posts))
+        setJazzPosts(shuffled_jazz_posts)
 
 
         const funk_posts = {}
-        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
+        for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Funk/i) || post.media_info.summary.match(/Funk/i)){
@@ -95,10 +157,11 @@ const Home = () => {
             }
           });    
        }}
-        setFunkPosts(funk_posts)
+        const shuffled_funk_posts = knuthShuffle(Object.entries(funk_posts))
+        setFunkPosts(shuffled_funk_posts)
 
         const reggae_posts = {}
-        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
+        for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Reggae/i) || post.media_info.summary.match(/Reggae/i)){
@@ -106,10 +169,11 @@ const Home = () => {
             }
           });    
        }}
-        setReggaePosts(reggae_posts)
+        const shuffled_reggae_posts = knuthShuffle(Object.entries(reggae_posts))
+        setReggaePosts(shuffled_reggae_posts)
 
         const folk_posts = {}
-        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
+        for (const [key, post] of Object.entries(posts)) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Folk/i) || post.media_info.summary.match(/Folk/i)){
@@ -117,7 +181,8 @@ const Home = () => {
             }
           });    
        }}
-        setFolkPosts(folk_posts)
+        const shuffled_folk_posts = knuthShuffle(Object.entries(folk_posts))
+        setFolkPosts(shuffled_folk_posts)
 
 
 
@@ -125,65 +190,7 @@ const Home = () => {
       } );
   }, []);  
 
-  const [style, set] = useSpring(() => ({
-    transform: "perspective(500px) rotateY(0deg)"
-  }));
 
-  const [style2, set2] = useSpring(() => ({
-    transform: "perspective(500px) rotateY(0deg)"
-  }));
-
-  const [style3, set3] = useSpring(() => ({
-    transform: "perspective(500px) rotateY(0deg)"
-  }));
-
-  const [style4, set4] = useSpring(() => ({
-    transform: "perspective(500px) rotateY(0deg)"
-  }));
-
-  const [style5, set5] = useSpring(() => ({
-    transform: "perspective(500px) rotateY(0deg)"
-  }));
-
-  const bind = useScroll(event => {
-    set({
-      transform: `perspective(500px) rotateY(${
-        event.scrolling ? event.delta[0] : 0
-      }deg)`
-    });
-  });
-
-  const bind2 = useScroll(event => {
-    set2({
-      transform: `perspective(500px) rotateY(${
-        event.scrolling ? event.delta[0] : 0
-      }deg)`
-    });
-  });
-
-  const bind3 = useScroll(event => {
-    set3({
-      transform: `perspective(500px) rotateY(${
-        event.scrolling ? event.delta[0] : 0
-      }deg)`
-    });
-  });
-
-  const bind4 = useScroll(event => {
-    set4({
-      transform: `perspective(500px) rotateY(${
-        event.scrolling ? event.delta[0] : 0
-      }deg)`
-    });
-  });
-
-  const bind5 = useScroll(event => {
-    set5({
-      transform: `perspective(500px) rotateY(${
-        event.scrolling ? event.delta[0] : 0
-      }deg)`
-    });
-  });
   
   return (
     <div>
@@ -198,19 +205,15 @@ const Home = () => {
   <Tab eventKey="rock" title="Rock">
       <div className={styles.container} {...bind()}>
      
-        {Object.entries(rock_posts).slice(0,100).map(post => 
-              <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
-                 target = "_blank"
-                 key={post[0]} 
-                //  className = {styles.album_title}
-                 >
+        {rock_posts.slice(0,100).map(post => 
+               <Link href="/record/[id]" as={'/record/' + post[0]} key={post[0]}>
                <animated.div style={style}>
                 <img 
                     src ={post[1] !== undefined? post[1].image_medium : ''} 
                     className = {styles.post}
                 />
-                </animated.div>
-               </a>      
+                </animated.div>     
+               </Link>
         )}   
       </div>
       </Tab>
@@ -222,7 +225,7 @@ const Home = () => {
   <Tab eventKey="jazz" title="Jazz" >
       <div className={styles.container} {...bind2()}>
      
-        {Object.entries(jazz_posts).map(post => 
+        {jazz_posts.map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
@@ -246,7 +249,7 @@ const Home = () => {
   <Tab eventKey="funk" title="Funk" >
       <div className={styles.container} {...bind3()}>
      
-        {Object.entries(funk_posts).map(post => 
+        {funk_posts.map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
@@ -270,7 +273,7 @@ const Home = () => {
   <Tab eventKey="reggae" title="Reggae" >
       <div className={styles.container} {...bind4()}>
      
-        {Object.entries(reggae_posts).map(post => 
+        {reggae_posts.map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
@@ -294,7 +297,7 @@ const Home = () => {
   <Tab eventKey="folk" title="Folk" >
       <div className={styles.container} {...bind5()}>
      
-        {Object.entries(folk_posts).map(post => 
+        {folk_posts.map(post => 
               <a href ={"https://flockify.herokuapp.com/#/albums/" + post[0]}
                  target = "_blank"
                  key={post[0]} 
@@ -311,10 +314,6 @@ const Home = () => {
       </div>
       </Tab>
   </Tabs>
-
-
-
-
 
 
       <img src='/flockify.png' className={styles.center}/>
