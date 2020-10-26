@@ -13,14 +13,53 @@ const Home = () => {
   const [reggae_posts, setReggaePosts] = useState([]);
   const [folk_posts, setFolkPosts] = useState([]);
 
+    // GENERIC FUNCTIONS TODO: move out of index.js ----------------------------------
+ 
+    // enumFromTo :: Int -> Int -> [Int]
+    const enumFromTo = (m, n) =>
+        n >= m ? (
+            iterateUntil(x => x >= n, x => 1 + x, m)
+        ) : [];
+ 
+    // iterateUntil :: (a -> Bool) -> (a -> a) -> a -> [a]
+    const iterateUntil = (p, f, x) => {
+        let vs = [x],
+            h = x;
+        while (!p(h))(h = f(h), vs.push(h));
+        return vs;
+    };
+ 
+    // randomRInt :: Int -> Int -> Int
+    const randomRInt = (low, high) =>
+        low + Math.floor(
+            (Math.random() * ((high - low) + 1))
+        );
+
+  const knuthShuffle = xs =>
+  enumFromTo(0, xs.length - 1)
+  .reduceRight((a, i) => {
+      const
+          iRand =  randomRInt(0, i),
+          tmp = a[iRand];
+      return iRand !== i ? (
+          a[iRand] = a[i],
+          a[i] = tmp,
+          a
+      ) : a;
+  }, xs);
+
+    // END GENERIC FUNCTIONS TODO: move out of index.js ----------------------------------
+
   const [posts, setPosts] = useState([]);  useEffect(() => {
     fire.database()
       .ref('posts/firsttoflock/')
       .orderByChild('media_info/album')
       .once('value')
       .then(snap => {
-        const posts = snap.val()
-        setPosts(posts) 
+        const all_posts = snap.val()
+        let posts = Object.keys(all_posts).map((k) => all_posts[k])
+        const shuffled_posts = knuthShuffle(posts)
+        setPosts(shuffled_posts) 
 
         const rock_posts = {}
         for (const [key, post] of Object.entries(posts)) {
@@ -31,6 +70,8 @@ const Home = () => {
             }
           });    
         }}
+
+        //TODO: need to foreach these
         
         setRockPosts(rock_posts)
 
