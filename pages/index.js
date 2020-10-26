@@ -58,11 +58,10 @@ const Home = () => {
       .then(snap => {
         const all_posts = snap.val()
         let posts = Object.keys(all_posts).map((k) => all_posts[k])
-        const shuffled_posts = knuthShuffle(posts)
-        setPosts(shuffled_posts) 
+        setPosts(posts) 
 
         const rock_posts = {}
-        for (const [key, post] of Object.entries(posts)) {
+        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
           if(post.tags){
           post.tags.forEach(tag => {
             if(tag.name.match(/Rock/i) || tag.name.match(/indie/i) || post.media_info.summary.match(/Rock/i)){
@@ -76,7 +75,7 @@ const Home = () => {
         setRockPosts(rock_posts)
 
         const jazz_posts = {}
-        for (const [key, post] of Object.entries(posts)) {
+        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i || post.media_info.summary.match(/Jazz/i))){
@@ -88,7 +87,7 @@ const Home = () => {
 
 
         const funk_posts = {}
-        for (const [key, post] of Object.entries(posts)) {
+        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Funk/i) || post.media_info.summary.match(/Funk/i)){
@@ -99,7 +98,7 @@ const Home = () => {
         setFunkPosts(funk_posts)
 
         const reggae_posts = {}
-        for (const [key, post] of Object.entries(posts)) {
+        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Reggae/i) || post.media_info.summary.match(/Reggae/i)){
@@ -110,7 +109,7 @@ const Home = () => {
         setReggaePosts(reggae_posts)
 
         const folk_posts = {}
-        for (const [key, post] of Object.entries(posts)) {
+        for (const [key, post] of Object.entries(knuthShuffle(posts))) {
         if(post.tags){
         post.tags.forEach(tag => {
           if(tag.name.match(/Folk/i) || post.media_info.summary.match(/Folk/i)){
