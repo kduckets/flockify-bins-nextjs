@@ -1,4 +1,3 @@
-//TODO: move to environment variables
 import firebase from 'firebase';
 
 const firebaseConfig = {
