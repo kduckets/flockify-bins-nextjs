@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor:"black"
   },
   logo:{
-    color:"white !important"
+    color:"white !important",
+    height:40
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -174,17 +175,16 @@ const useStyles = makeStyles((theme) => ({
     <div className={classes.grow}>
       <AppBar position="static" className={classes.color}>
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link  href="/"><span className={classes.logo}>Flockify Bins</span></Link>
-          </Typography>
+          </IconButton> */}
+         <Link href="/"><img className={classes.logo} src="/favicon.ico"/></Link>
+  
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
