@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css'
 import Bin from '../components/recordBin.js'
+import Nav from '../components/nav.js'
 
 function Home({ albums }) {
     // GENERIC MATH FUNCTIONS TODO: move out of index.js ----------------------------------
@@ -121,11 +122,13 @@ function Home({ albums }) {
   ,[]);  
  
   return (
-    <div>
+    <div className={styles.home}>
       <Head>
         <title>Flockify Bins</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Nav/>
 
       <Bin data={rock_posts}/>
 
