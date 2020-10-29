@@ -52,7 +52,6 @@ const Record = (props) => {
         justify="center"
         style={{ minHeight: '100vh' }}
         >
-    <Grid item xs={3}>
     <Card>
     <CardActionArea>
       <CardMedia
@@ -84,7 +83,6 @@ const Record = (props) => {
       </Button>
     </CardActions>
   </Card>
-  </Grid>
   </Grid>
   </div>
     // <Container>
