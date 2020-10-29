@@ -91,10 +91,10 @@ const Record = (props) => {
             href={"https://duckduckgo.com/?q=!ducky+" + record.media_info.artist.replace(/ /g,"+") + "band+website"}
             target="_blank"
             >
-       Buy from Artist's Website
+       Buy from Artist
       </Button>
       <Button size="small" color="primary">
-        Buy from Local Record Shop
+        Buy Local
       </Button>
     </CardActions>
   </Card>
