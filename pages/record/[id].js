@@ -50,7 +50,6 @@ const Record = (props) => {
         direction="column"
         alignItems="center"
         justify="center"
-        style={{ minHeight: '100vh' }}
         >
     <Card>
     <CardActionArea>
