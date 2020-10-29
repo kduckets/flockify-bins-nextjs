@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     minWidth: 300,
-    width: '50rem',
+    width: '100%',
   },
   image: {
     position: 'relative',
      height: '50rem',
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
-      height: 100,
+      height: "100%",
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
@@ -104,7 +104,9 @@ const classes = useStyles();
       </Container>
     )
   }  return (
+    <Container>
     <div className={classes.root}>
+   
         <ButtonBase
           href={"https://duckduckgo.com/?q=!ducky+"+record.media_info.artist.replace(/ /g, '+') + "band+website"}
           target="_blank"
@@ -135,7 +137,9 @@ const classes = useStyles();
             </Typography>
           </span>
         </ButtonBase>
+       
     </div>
+    </Container>
   );
 }
 Record.getInitialProps = ({ query }) => {
