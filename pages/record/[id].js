@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Nav from '../../components/nav.js'
 import Grid from '@material-ui/core/Grid';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles({
   root: {
@@ -43,6 +44,7 @@ const Record = (props) => {
   }  return (
     <div>
     <Nav/>
+    
     <Grid
         container
         spacing={0}
@@ -51,6 +53,20 @@ const Record = (props) => {
         alignItems="center"
         justify="center"
         >
+
+    <motion.div initial="hidden" animate="visible" variants={{
+                hidden: {
+                scale: .8,
+                opacity: 0
+                },
+                 visible: {
+                  scale: 1,
+                   opacity: 1,
+               transition: {
+                   delay: .4
+                  }
+                  },
+              }}>
     <Card>
     <CardActionArea>
       <CardMedia
@@ -82,6 +98,7 @@ const Record = (props) => {
       </Button>
     </CardActions>
   </Card>
+  </motion.div>
   </Grid>
   </div>
     // <Container>
