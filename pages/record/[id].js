@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import fire from '../../config/fire-config';
-import styles from '../../styles/Home.module.css'
-import Link from 'next/link'
-import Button from '@material-ui/core/Button';
 import Container from 'react-bootstrap/Container';
 import Spinner from 'react-bootstrap/Spinner';
-import Image from 'react-bootstrap/Image';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
@@ -29,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   image: {
-    position: 'relative',
-     height: '50rem',
+    position: 'absolute',
+    height: "100%",
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
-      height: "100%",
+      height: 320,
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
@@ -104,7 +100,7 @@ const classes = useStyles();
       </Container>
     )
   }  return (
-    <Container>
+    
     <div className={classes.root}>
    
         <ButtonBase
@@ -139,7 +135,7 @@ const classes = useStyles();
         </ButtonBase>
        
     </div>
-    </Container>
+   
   );
 }
 Record.getInitialProps = ({ query }) => {
