@@ -17,7 +17,7 @@ export default function Bin({ data }) {
       const bind = useScroll(event => {
         set({
           transform: `perspective(500px) rotateY(${
-            event.scrolling ? event.delta[0]/2 : 0
+            event.scrolling ? event.delta[0] : 0
           }deg)`
         });
       });
