@@ -93,34 +93,16 @@ const Record = (props) => {
             >
        Buy from Artist
       </Button>
-      <Button size="small" color="primary">
-        Buy Local
+      <Button size="small" color="primary"
+      href={"https://duckduckgo.com/?q=!ducky+" + record.media_info.artist.replace(/ /g,"+") +"+"+record.media_info.album.replace(/ /g,"+" + "release+discogs"}
+      target="_blank">
+        Buy on Discogs
       </Button>
     </CardActions>
   </Card>
   </motion.div>
   </Grid>
   </div>
-    // <Container>
-    //   <Image src={record.image_medium} rounded fluid />
-    //   <p>
-
-    //   </p>
-    //   <p>     
-    //   {record.media_info.labels  ?  <Button href={"https://duckduckgo.com/?q=!ducky+" + record.media_info.labels[0].replace(/ /g,"+") + "band+website"}
-    //         target="_blank"
-    //         variant="contained" color="primary">  
-    //     <a>Buy Record from Label's Website</a>
-    //   </Button>
-    //     : ''      }    
-    //   </p>
-
-    //   <p>
-    //   <Link href="/">
-    //   <a>Back to Bins</a>
-    //   </Link>
-    //   </p>
-    // </Container>
   )
 }
 Record.getInitialProps = ({ query }) => {
