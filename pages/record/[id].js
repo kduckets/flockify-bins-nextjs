@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Nav from '../../components/nav.js'
 import Grid from '@material-ui/core/Grid';
 import { motion } from 'framer-motion';
+import Link from "next/link";
+
 
 const useStyles = makeStyles({
   root: {
@@ -69,14 +71,15 @@ const Record = (props) => {
               }}>
     <Card>
     <CardActionArea>
+      <Link href={"https://flockify.herokuapp.com/#/albums/"+props.id}>
       <CardMedia
         component="img"
         alt="Contemplative Reptile"
         height="100%"
         image={record.image_medium}
         title="Contemplative Reptile"
-        href={"https://flockify.herokuapp.com/#/albums/"+props.id}
       />
+      </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {record.media_info.album}
