@@ -75,6 +75,7 @@ const Record = (props) => {
         height="100%"
         image={record.image_medium}
         title="Contemplative Reptile"
+        href={"https://flockify.herokuapp.com/#/albums/"+props.id}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
