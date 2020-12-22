@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import moment from 'moment';
 import styles from '../styles/Home.module.css'
 import Bin from '../components/recordBin.js'
 import Nav from '../components/nav.js'
-import moment from 'moment';
+
 
 function Home({ albums }) {
     // GENERIC MATH FUNCTIONS TODO: move out of index.js ----------------------------------
@@ -194,10 +195,6 @@ function Home({ albums }) {
         const shuffled_twenties_posts = knuthShuffle(Object.entries(twenties_posts))
         shuffled_twenties_posts.push('20s')
         setTwentiesPosts(shuffled_twenties_posts)
-
-        
-        
-
       
 
         
