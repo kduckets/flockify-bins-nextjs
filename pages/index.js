@@ -228,7 +228,7 @@ function Home({ albums }) {
 
       <Bin data={sixties_posts}/>
       
-      <Bin data={rock_posts}/>
+      {/* <Bin data={rock_posts}/>
 
       <Bin data={jazz_posts}/>
 
@@ -236,7 +236,7 @@ function Home({ albums }) {
 
       <Bin data={reggae_posts}/>
       
-      <Bin data={folk_posts}/>
+      <Bin data={folk_posts}/> */}
 
 
       <img src='/flockify.png' className={styles.center}/>
