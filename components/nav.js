@@ -184,9 +184,9 @@ const useStyles = makeStyles((theme) => ({
           >
             <MenuIcon />
           </IconButton> */}
-         <Link href="/"><img className={classes.logo} src="/favicon.ico"/></Link>
+         <Link href="/"><img className={classes.logo} src="/favicon.ico"/></Link>_bins
   
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -198,9 +198,9 @@ const useStyles = makeStyles((theme) => ({
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
+          </div> */}
+          {/* <div className={classes.grow} />
+          <div className={classes.sectionDesktop}> */}
             {/* <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -211,7 +211,7 @@ const useStyles = makeStyles((theme) => ({
                 <NotificationsIcon />
               </Badge>
             </IconButton> */}
-            <IconButton
+            {/* <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -232,7 +232,7 @@ const useStyles = makeStyles((theme) => ({
             >
               <MoreIcon />
             </IconButton>
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
