@@ -32,11 +32,11 @@ export default function Bin({ data }) {
 
     return (
  <div>
-    <Tabs defaultActiveKey={data[data.length-1]} id="noanim-tab-example" >
+    <Tabs defaultActiveKey={data[data.length-1]}>
         <Tab eventKey={data[data.length-1]} title={data[data.length-1]}>       
             <div className={styles.container} {...bind()}> 
              {data.slice(0,100).map(post => 
-              <motion.div initial="hidden" animate="visible" variants={{
+              <motion.div initial="hidden" animate="visible" key={post[0]} variants={{
                 hidden: {
                 scale: .8,
                 opacity: 0
