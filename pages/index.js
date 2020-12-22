@@ -65,71 +65,71 @@ function Home({ albums }) {
 
       //TODO: need to foreach these with custom bin genres
       
-        const rock_posts = {}
-        for (const [key, post] of Object.entries(albums)) {
-          if(post.tags){
-          post.tags.forEach(tag => {
-            if(tag.name.match(/Rock/i) || tag.name.match(/indie/i) || post.media_info.summary.match(/Rock/i)){
-              rock_posts[key] = post
-            }
-          }); 
-        }}
-        const shuffled_rock_posts = knuthShuffle(Object.entries(rock_posts))
-        shuffled_rock_posts.push('Rock')
-        setRockPosts(shuffled_rock_posts)
+      //   const rock_posts = {}
+      //   for (const [key, post] of Object.entries(albums)) {
+      //     if(post.tags){
+      //     post.tags.forEach(tag => {
+      //       if(tag.name.match(/Rock/i) || tag.name.match(/indie/i) || post.media_info.summary.match(/Rock/i)){
+      //         rock_posts[key] = post
+      //       }
+      //     }); 
+      //   }}
+      //   const shuffled_rock_posts = knuthShuffle(Object.entries(rock_posts))
+      //   shuffled_rock_posts.push('Rock')
+      //   setRockPosts(shuffled_rock_posts)
 
-        const jazz_posts = {}
-        for (const [key, post] of Object.entries(albums)) {
-        if(post.tags){
-        post.tags.forEach(tag => {
-          if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i || post.media_info.summary.match(/Jazz/i))){
-            jazz_posts[key] = post
-            }
-          });    
-       }}
-        const shuffled_jazz_posts = knuthShuffle(Object.entries(jazz_posts))
-        shuffled_jazz_posts.push('Jazz')
-        setJazzPosts(shuffled_jazz_posts)
+      //   const jazz_posts = {}
+      //   for (const [key, post] of Object.entries(albums)) {
+      //   if(post.tags){
+      //   post.tags.forEach(tag => {
+      //     if(tag.name.match(/Jazz/i) || tag.name.match(/Yazz/i || post.media_info.summary.match(/Jazz/i))){
+      //       jazz_posts[key] = post
+      //       }
+      //     });    
+      //  }}
+      //   const shuffled_jazz_posts = knuthShuffle(Object.entries(jazz_posts))
+      //   shuffled_jazz_posts.push('Jazz')
+      //   setJazzPosts(shuffled_jazz_posts)
 
 
-        const funk_posts = {}
-        for (const [key, post] of Object.entries(albums)) {
-        if(post.tags){
-        post.tags.forEach(tag => {
-          if(tag.name.match(/Funk/i) || post.media_info.summary.match(/Funk/i)){
-            funk_posts[key] = post
-            }
-          });    
-       }}
-        const shuffled_funk_posts = knuthShuffle(Object.entries(funk_posts))
-        shuffled_funk_posts.push('Funk')
-        setFunkPosts(shuffled_funk_posts)
+      //   const funk_posts = {}
+      //   for (const [key, post] of Object.entries(albums)) {
+      //   if(post.tags){
+      //   post.tags.forEach(tag => {
+      //     if(tag.name.match(/Funk/i) || post.media_info.summary.match(/Funk/i)){
+      //       funk_posts[key] = post
+      //       }
+      //     });    
+      //  }}
+      //   const shuffled_funk_posts = knuthShuffle(Object.entries(funk_posts))
+      //   shuffled_funk_posts.push('Funk')
+      //   setFunkPosts(shuffled_funk_posts)
 
-        const reggae_posts = {}
-        for (const [key, post] of Object.entries(albums)) {
-        if(post.tags){
-        post.tags.forEach(tag => {
-          if(tag.name.match(/Reggae/i) || post.media_info.summary.match(/Reggae/i)){
-            reggae_posts[key] = post
-            }
-          });    
-       }}
-        const shuffled_reggae_posts = knuthShuffle(Object.entries(reggae_posts))
-        shuffled_reggae_posts.push('Reggae')
-        setReggaePosts(shuffled_reggae_posts)
+      //   const reggae_posts = {}
+      //   for (const [key, post] of Object.entries(albums)) {
+      //   if(post.tags){
+      //   post.tags.forEach(tag => {
+      //     if(tag.name.match(/Reggae/i) || post.media_info.summary.match(/Reggae/i)){
+      //       reggae_posts[key] = post
+      //       }
+      //     });    
+      //  }}
+      //   const shuffled_reggae_posts = knuthShuffle(Object.entries(reggae_posts))
+      //   shuffled_reggae_posts.push('Reggae')
+      //   setReggaePosts(shuffled_reggae_posts)
 
-        const folk_posts = {}
-        for (const [key, post] of Object.entries(albums)) {
-        if(post.tags){
-        post.tags.forEach(tag => {
-          if(tag.name.match(/Folk/i) || post.media_info.summary.match(/Folk/i)){
-            folk_posts[key] = post
-            }
-          });    
-       }}
-        const shuffled_folk_posts = knuthShuffle(Object.entries(folk_posts))
-        shuffled_folk_posts.push('Folk')
-        setFolkPosts(shuffled_folk_posts)
+      //   const folk_posts = {}
+      //   for (const [key, post] of Object.entries(albums)) {
+      //   if(post.tags){
+      //   post.tags.forEach(tag => {
+      //     if(tag.name.match(/Folk/i) || post.media_info.summary.match(/Folk/i)){
+      //       folk_posts[key] = post
+      //       }
+      //     });    
+      //  }}
+      //   const shuffled_folk_posts = knuthShuffle(Object.entries(folk_posts))
+      //   shuffled_folk_posts.push('Folk')
+      //   setFolkPosts(shuffled_folk_posts)
 
 
         // --------DECADES-----------------
@@ -225,7 +225,7 @@ function Home({ albums }) {
 
       <Bin data={sixties_posts}/>
       
-      <Bin data={rock_posts}/>
+      {/* <Bin data={rock_posts}/>
 
       <Bin data={jazz_posts}/>
 
@@ -233,7 +233,7 @@ function Home({ albums }) {
 
       <Bin data={reggae_posts}/>
       
-      <Bin data={folk_posts}/>
+      <Bin data={folk_posts}/> */}
 
 
       <img src='/flockify.png' className={styles.center}/>

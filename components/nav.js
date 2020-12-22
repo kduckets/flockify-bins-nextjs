@@ -184,7 +184,7 @@ const useStyles = makeStyles((theme) => ({
           >
             <MenuIcon />
           </IconButton> */}
-         <Link href="/"><img className={classes.logo} src="/favicon.ico"/></Link>_bins
+         <Link href="/"><img className={classes.logo} src="/favicon.ico"/></Link><Link href="/">_bins</Link>
   
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
