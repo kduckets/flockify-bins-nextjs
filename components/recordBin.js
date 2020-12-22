@@ -15,11 +15,13 @@ export default function Bin({ data }) {
       }));
 
       const bind = useScroll(event => {
+        if(event.direction[0] === 1){
         set({
           transform: `perspective(500px) rotateY(${
             event.scrolling ? event.delta[0] : 0
           }deg)`
         });
+      }
       });
 
    
