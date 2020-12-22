@@ -3,6 +3,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css'
 import Bin from '../components/recordBin.js'
 import Nav from '../components/nav.js'
+import moment from 'moment';
 
 function Home({ albums }) {
     // GENERIC MATH FUNCTIONS TODO: move out of index.js ----------------------------------
@@ -47,6 +48,16 @@ function Home({ albums }) {
     const [funk_posts, setFunkPosts] = useState([]);
     const [reggae_posts, setReggaePosts] = useState([]);
     const [folk_posts, setFolkPosts] = useState([]);
+
+    const [sixties_posts, setSixtiesPosts] = useState([]);
+    const [seventies_posts, setSeventiesPosts] = useState([]);
+    const [eighties_posts, setEightiesPosts] = useState([]);
+    const [nineties_posts, setNinetiesPosts] = useState([]);
+    const [zeros_posts, setZerosPosts] = useState([]);
+    const [tens_posts, setTensPosts] = useState([]);
+    const [twenties_posts, setTwentiesPosts] = useState([]);
+
+
        
   useEffect(() => {
 
@@ -118,7 +129,80 @@ function Home({ albums }) {
         const shuffled_folk_posts = knuthShuffle(Object.entries(folk_posts))
         shuffled_folk_posts.push('Folk')
         setFolkPosts(shuffled_folk_posts)
+
+
+        // --------DECADES-----------------
+        const sixties_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('1960-1-01', '1969-12-31')){
+            sixties_posts[key] = post
+       }}
+        const shuffled_sixties_posts = knuthShuffle(Object.entries(sixties_posts))
+        shuffled_sixties_posts.push('60s')
+        setSixtiesPosts(shuffled_sixties_posts)
+
+        const seventies_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('1970-1-01', '1979-12-31')){
+          seventies_posts[key] = post
+       }}
+        const shuffled_seventies_posts = knuthShuffle(Object.entries(seventies_posts))
+        shuffled_seventies_posts.push('70s')
+        setSeventiesPosts(shuffled_seventies_posts)
+
+        const eighties_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('1980-1-01', '1989-12-31')){
+          eighties_posts[key] = post
+       }}
+        const shuffled_eighties_posts = knuthShuffle(Object.entries(eighties_posts))
+        shuffled_eighties_posts.push('80s')
+        setEightiesPosts(shuffled_eighties_posts)
+
+        const nineties_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('1990-1-01', '1999-12-31')){
+          nineties_posts[key] = post
+       }}
+        const shuffled_nineties_posts = knuthShuffle(Object.entries(nineties_posts))
+        shuffled_nineties_posts.push('90s')
+        setNinetiesPosts(shuffled_nineties_posts)
+
+        const zeros_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('2000-1-01', '2009-12-31')){
+          zeros_posts[key] = post
+       }}
+        const shuffled_zeros_posts = knuthShuffle(Object.entries(zeros_posts))
+        shuffled_zeros_posts.push('00s')
+        setZerosPosts(shuffled_zeros_posts)
+
+        const tens_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('2010-1-01', '2019-12-31')){
+          tens_posts[key] = post
+       }}
+        const shuffled_tens_posts = knuthShuffle(Object.entries(tens_posts))
+        shuffled_tens_posts.push('10s')
+        setTensPosts(shuffled_tens_posts)
+
+        const twenties_posts = {}
+        for (const [key, post] of Object.entries(albums)) {
+        if(post.media_info && post.media_info.album && moment(post.media_info.release_date).isBetween('2020-1-01', '2029-12-31')){
+          twenties_posts[key] = post
+       }}
+        const shuffled_twenties_posts = knuthShuffle(Object.entries(twenties_posts))
+        shuffled_twenties_posts.push('20s')
+        setTwentiesPosts(shuffled_twenties_posts)
+
+        
+        
+
+      
+
+        
   }
+
   ,[]);  
  
   return (
@@ -130,6 +214,20 @@ function Home({ albums }) {
 
       <Nav/>
 
+      <Bin data={twenties_posts}/>
+
+      <Bin data={tens_posts}/>
+
+      <Bin data={zeros_posts}/>
+
+      <Bin data={nineties_posts}/>
+
+      <Bin data={eighties_posts}/>
+
+      <Bin data={seventies_posts}/>
+
+      <Bin data={sixties_posts}/>
+      
       <Bin data={rock_posts}/>
 
       <Bin data={jazz_posts}/>
