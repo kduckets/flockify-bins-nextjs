@@ -6,9 +6,18 @@ import { useScroll } from "react-use-gesture";
 import Container from 'react-bootstrap/Container';
 import Spinner from 'react-bootstrap/Spinner';
 import { motion } from 'framer-motion';
+import { fade, makeStyles } from '@material-ui/core/styles';
 
 
 export default function Bin({ data }) {
+
+  const useStyles = makeStyles((theme) => ({
+    blackTab: {
+      color: "white !important",
+      backgroundColor: "black !important",
+    }
+    
+  }))
     
     const [style, set] = useSpring(() => ({
         transform: "perspective(500px) rotateY(0deg)"
@@ -24,6 +33,9 @@ export default function Bin({ data }) {
       }
       });
 
+      const classes = useStyles();
+
+
    
       if(data.length == 0)
         return (
@@ -35,7 +47,7 @@ export default function Bin({ data }) {
     return (
  <div>
     <Tabs defaultActiveKey={data[data.length-1]}>
-        <Tab eventKey={data[data.length-1]} title={data[data.length-1]}>       
+        <Tab eventKey={data[data.length-1]} title={data[data.length-1]} tabClassName={classes.blackTab}>       
             <div className={styles.container} {...bind()}> 
              {data.slice(0,100).map(post => 
               <motion.div initial="hidden" animate="visible" key={post[0]} variants={{
