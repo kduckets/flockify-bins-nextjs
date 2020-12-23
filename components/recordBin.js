@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Tabs, Tab } from "react-bootstrap";
 import styles from '../styles/Home.module.css'
+import { Tabs, Tab } from "react-bootstrap";
 import { animated, useSpring } from "react-spring";
 import { useScroll } from "react-use-gesture";
 import Container from 'react-bootstrap/Container';
