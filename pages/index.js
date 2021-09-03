@@ -243,7 +243,7 @@ function Home({ albums }) {
   )
 }
 
-    export async function getStaticProps() {
+    export async function getServerSideProps() {
 
           const res = await fetch(process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL + "/posts/firsttoflock.json")
           const albums = await res.json()
