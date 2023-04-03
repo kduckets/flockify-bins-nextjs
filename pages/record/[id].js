@@ -92,14 +92,16 @@ const Record = (props) => {
     <CardActions>   
     <Button size="small" 
             color="primary" 
-            href={"https://duckduckgo.com/?q=\\+" + record.media_info.artist.replace(/ /g,"+") + "band+website"}
+            href={"https://duckduckgo.com/?q=\\" + record.media_info.artist.replace(/ /g,"+") + "band+website"}
             target="_blank"
+            rel="noopener noreferrer"
             >
        Buy from Artist
       </Button>
       <Button size="small" color="primary"
       href={"https://duckduckgo.com/?q=\\+" + record.media_info.artist.replace(/ /g,"+") +"+" + record.media_info.album.replace(/ /g,"+") + "release+discogs"}
-      target="_blank">
+      target="_blank"
+      rel="noopener noreferrer">
         Buy on Discogs
       </Button>
     </CardActions>

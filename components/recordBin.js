@@ -63,8 +63,8 @@ export default function Bin({ data }) {
                   }
                   },
               }}>
-               <Link href="/record/[id]" as={'/record/' + post[0]} key={post[0]} target="_blank">
-                 <a>
+               <Link href="/record/[id]" as={'/record/' + post[0]} key={post[0]} >
+                 <a target="_blank" >
        
                <animated.div style={style}>
                 <img 
