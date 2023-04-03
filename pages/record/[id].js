@@ -71,7 +71,7 @@ const Record = (props) => {
               }}>
     <Card>
     <CardActionArea>
-      <Link target="_blank" href={"https://flockify.herokuapp.com/#/albums/"+props.id}>
+      <a href={"https://flockify.herokuapp.com/#/albums/"+props.id} target="_blank"  rel="noopener noreferrer">
       <CardMedia
         component="img"
         alt="Contemplative Reptile"
@@ -79,7 +79,7 @@ const Record = (props) => {
         image={record.image_medium}
         title="Contemplative Reptile"
       />
-      </Link>
+      </a>
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {record.media_info.album}
